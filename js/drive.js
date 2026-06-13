@@ -140,8 +140,15 @@ export class Drive {
     this.world.defaultContactMaterial.friction = 0.35;
     this.world.defaultContactMaterial.restitution = 0.05;
 
-    const ground = new CANNON.Body({ mass: 0, shape: new CANNON.Plane() });
-    ground.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
+    // NOTE: do NOT use an infinite CANNON.Plane for the ground — the RaycastVehicle's
+    // wheel rays misbehave against a plane half-space and the car gets tripped and
+    // launched off the ground (it would stall a few meters past the start). A large
+    // flat box with its top surface at y=0 is stable across the whole course.
+    const ground = new CANNON.Body({
+      mass: 0,
+      shape: new CANNON.Box(new CANNON.Vec3(200, 5, 400)),
+      position: new CANNON.Vec3(0, -5, 150),
+    });
     this.world.addBody(ground);
   }
 
