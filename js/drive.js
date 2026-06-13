@@ -653,7 +653,10 @@ export class Drive {
       brake = spec.mass * 0.06; // rolling resistance / engine braking
     }
 
-    const perWheel = force / this.drivenWheels.length;
+    // cannon-es derives the wheel's forward roll as cross(axle, direction) = -Z
+    // given our axleLocal +X / directionLocal -Y, so a positive engine force drives
+    // toward -Z. Our course (and the car's nose) faces +Z, so negate to match.
+    const perWheel = -force / this.drivenWheels.length;
     for (let i = 0; i < 4; i++) {
       vehicle.applyEngineForce(this.drivenWheels.includes(i) ? perWheel : 0, i);
       vehicle.setBrake(brake, i);
