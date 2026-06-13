@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forge Motors — Car Designer &amp; Proving Ground</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <div id="loading">
+    <div class="loader-logo">FORGE<span>MOTORS</span></div>
+    <div class="loader-sub">Loading design studio…</div>
+  </div>
+
+  <!-- ===== Design Studio UI ===== -->
+  <div id="designer-ui" class="hidden">
+    <header id="brand">
+      <h1>FORGE<span>MOTORS</span></h1>
+      <p>Design Studio</p>
+    </header>
+    <aside id="parts-panel"></aside>
+    <aside id="stats-panel"></aside>
+    <button id="test-drive-btn">TEST DRIVE &nbsp;▸</button>
+    <div id="studio-hint">drag to orbit · scroll to zoom</div>
+  </div>
+
+  <!-- ===== Test Drive UI ===== -->
+  <div id="drive-ui" class="hidden">
+    <button id="back-btn">◂ &nbsp;GARAGE</button>
+    <div id="timer"></div>
+    <div id="hud">
+      <div id="speedo">
+        <div id="speed-value">0</div>
+        <div class="unit">km/h</div>
+        <div id="rpm-bar"><div id="rpm-fill"></div></div>
+        <div id="gear">N</div>
+      </div>
+    </div>
+    <div id="controls-hint">
+      <b>W/S</b> throttle &amp; brake · <b>A/D</b> steer · <b>SPACE</b> handbrake ·
+      <b>C</b> camera · <b>R</b> flip · <b>T</b> restart · <b>M</b> mute · <b>ESC</b> garage
+    </div>
+    <div id="toast"></div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+      "cannon-es": "https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
